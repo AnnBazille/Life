@@ -1,3 +1,8 @@
 #not including the build files
 Life/Life/bin
 Life/Life/obj
+
+#Visual Studio project files
+Life/.vs
+*.sln
+*.csproj
