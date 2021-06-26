@@ -1,0 +1,26 @@
+User->GameController: Run
+GameController->User: Edit Field (Random or Manually)
+User->GameController: Setting the Field Size
+note over User,GameController: Random
+User->GameController: Random
+GameController->GameController: Filling the cells
+GameController->User: Printing the Field
+note over User,GameController: Manually
+alt Manually
+    loop
+        User->GameController: Set Cell
+        GameController->User: Printing the Field
+        opt
+        User->GameController: Clear the Field
+        GameController->User: Printing the Field
+        end
+    end
+end
+note over User,GameController: Running
+loop
+    GameController->User: Printing the Field
+    opt
+    User->GameController: Pause/Unpause
+    end
+end
+GameController->User: End Message
