@@ -1,9 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Life.ConsolePrinter
+namespace ConsolePrinterLibrary
 {
-    class TableController
+    /// <summary>
+    /// This class is used for printing the tables
+    /// </summary>
+    public class TablePrinter
     {
+        /// <summary>
+        /// The Table which is to be printed
+        /// </summary>
         public Table Table { get; set; } = new Table();
         /// <summary>
         /// Creates string with table in such format:
@@ -28,7 +36,8 @@ namespace Life.ConsolePrinter
                 width.Add(Table.Fields[i], Table.Fields[i].Name.Length);
                 for (int a = 0; a < Table.Entries.Count; a++)
                 {
-                    if (width[Table.Fields[i]] < Table.Entries[a].Columns[Table.Fields[i]].Length)
+                    if (Table.Entries[a].Columns.Keys.Contains(Table.Fields[i]) &&
+                        width[Table.Fields[i]] < Table.Entries[a].Columns[Table.Fields[i]].Length)
                     {
                         width[Table.Fields[i]] = Table.Entries[a].Columns[Table.Fields[i]].Length;
                     }
@@ -105,11 +114,23 @@ namespace Life.ConsolePrinter
                 for (int a = 0; a < Table.Fields.Count; a++)
                 {
                     text += "│ ";
-                    left = (width[Table.Fields[a]] - Table.Entries[i].Columns[Table.Fields[a]].Length) / 2;
-                    right = width[Table.Fields[a]] - Table.Entries[i].Columns[Table.Fields[a]].Length - left;
+                    int length = 1;
+                    if(Table.Entries[i].Columns.Keys.Contains(Table.Fields[a]))
+                    {
+                        length = Table.Entries[i].Columns[Table.Fields[a]].Length;
+                    }
+                    left = (width[Table.Fields[a]] - length) / 2;
+                    right = width[Table.Fields[a]] - length - left;
                     for (int k = 0; k < left; k++)
                         text += " ";
-                    text += Table.Entries[i].Columns[Table.Fields[a]];
+                    if (Table.Entries[i].Columns.Keys.Contains(Table.Fields[a]))
+                    {
+                        text += Table.Entries[i].Columns[Table.Fields[a]];
+                    }
+                    else
+                    {
+                        text += " ";
+                    }
                     for (int k = 0; k < right + 1; k++)
                         text += " ";
                     if (a == Table.Fields.Count - 1)
@@ -152,6 +173,86 @@ namespace Life.ConsolePrinter
             text += "\r\n";
             #endregion
             return text;
+        }
+        /// <summary>
+        /// Creates string with table in html format:
+        ///     <table>
+        ///         <thead>
+        ///             <tr>
+        ///                 <th>
+        ///                     
+        ///                 </th>
+        ///             </tr>
+        ///             <tr>
+        ///                 <th>
+        ///                     
+        ///                 </th>
+        ///                 <th>
+        ///                     
+        ///                 </th>
+        ///             </tr>
+        ///         </thead>
+        ///         <tbody>
+        ///             <tr>
+        ///                 <td>
+        ///                     
+        ///                 </td>
+        ///                 <td>
+        ///                     
+        ///                 </td>
+        ///             </tr>
+        ///             <tr>
+        ///                 <td>
+        ///                     
+        ///                 </td>
+        ///                 <td>
+        ///                     
+        ///                 </td>
+        ///             </tr>
+        ///         </tbody>
+        ///     </table>
+        /// </summary>
+        public string GetHTMLTable()
+        {
+            string html = "";
+            html += "<table rules=\"all\" border=\"1\">";
+            html += "<thead>";
+            html += "<tr>";
+            html += $"<th colspan=\"{Table.Fields.Count}\">";
+            html += Table.Name;
+            html += "</th>";
+            html += "</tr>";
+            html += "<tr>";
+            for (int i = 0; i < Table.Fields.Count; i++)
+            {
+                html += "<th>";
+                html += Table.Fields[i].Name;
+                html += "</th>";
+            }
+            html += "</tr>";
+            html += "</thead>";
+            html += "<tbody>";
+            for (int i = 0; i < Table.Entries.Count; i++)
+            {
+                html += "<tr>";
+                for (int a = 0; a < Table.Fields.Count; a++)
+                {
+                    html += "<td>";
+                    if (Table.Entries[i].Columns.Keys.Contains(Table.Fields[a]))
+                    { 
+                        html += Table.Entries[i].Columns[Table.Fields[a]]; 
+                    }
+                    else
+                    {
+                        html += "&nbsp;";
+                    }
+                    html += "</td>";
+                }
+                html += "</tr>";
+            }
+            html += "</tbody>";
+            html += "</table>";
+            return html;
         }
     }
 }

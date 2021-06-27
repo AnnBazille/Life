@@ -6,20 +6,15 @@ using System.Threading.Tasks;
 
 namespace Life
 {
-    class Cell : ICloneable
+    public struct Position
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int X;
+        public int Y;
+    }
+    class Cell
+    {
+        public Position Position { get; set; }
         public bool IsAlive { get; set; } = false;
-        public object Clone()
-        {
-            return new Cell()
-            {
-                X = this.X,
-                Y = this.Y,
-                IsAlive = this.IsAlive
-            };
-        }
         public void Process()
         {
             ;

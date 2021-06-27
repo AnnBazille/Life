@@ -1,0 +1,12 @@
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\bin\Release\net5.0\ConsolePrinterLibrary.deps.json
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\bin\Release\net5.0\ConsolePrinterLibrary.dll
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\bin\Release\net5.0\ref\ConsolePrinterLibrary.dll
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\bin\Release\net5.0\ConsolePrinterLibrary.pdb
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ConsolePrinterLibrary.csprojAssemblyReference.cache
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ConsolePrinterLibrary.GeneratedMSBuildEditorConfig.editorconfig
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ConsolePrinterLibrary.AssemblyInfoInputs.cache
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ConsolePrinterLibrary.AssemblyInfo.cs
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ConsolePrinterLibrary.csproj.CoreCompileInputs.cache
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ConsolePrinterLibrary.dll
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ref\ConsolePrinterLibrary.dll
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Release\net5.0\ConsolePrinterLibrary.pdb

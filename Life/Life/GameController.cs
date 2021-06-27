@@ -4,29 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using ConsolePrinterLibrary;
 
 namespace Life
 {
-    class GameController
+    class GameController<T> where T : class, IPrinter, new()
     {
+        private TimeController timeController;
         private Timer Timer = new Timer(1000);
         private Action StartProcess;
-        private List<Cell> Field = new List<Cell>();
-        public List<List<Cell>> FieldCopies = new List<List<Cell>>();
+        private Dictionary<Position, Cell> Field = new Dictionary<Position, Cell>();
+        public List<bool[]> FieldCopies = new List<bool[]>();
         public int SizeY { get; private set; }
         public int SizeX { get; private set; }
         public ulong Generation { get; private set; } = 1;
-        private IPrinter Printer = new Life.ConsolePrinter.ConsolePrinter();
+        private IPrinter Printer;
         public bool IsPaused { get; private set; }
-        private static GameController Controller;
-        private GameController() { }
-        public static GameController GetController()
+        public GameController(TimeController time) 
         {
-            if (Controller is null)
+            Printer = new T();
+            timeController = time;
+        }
+        private bool[][] FieldToArray()
+        {
+            bool[][] array = new bool[SizeY][];
+            for(int i = 0; i < SizeY; i++)
             {
-                Controller = new GameController();
+                array[i] = new bool[SizeX];
+                for(int a = 0; a < SizeX; a++)
+                {
+                    Position position;
+                    position.X = a;
+                    position.Y = i;
+                    if(Field[position].IsAlive)
+                    {
+                        array[i][a] = true;
+                    }
+                    else
+                    {
+                        array[i][a] = false;
+                    }
+                }
             }
-            return Controller;
+            return array;
+        }
+        private bool[] SimplifyFieldArray(bool[][] source)
+        {
+            bool[] result = new bool[SizeY * SizeX];
+            for(int i = 0; i < SizeY; i++)
+            {
+                for(int a= 0; a < SizeX; a++)
+                {
+                    result[i * SizeY + SizeX] = source[i][a];
+                }
+            }
+            return result;
         }
         private void NextStep(object sender, EventArgs e)
         {
@@ -38,7 +70,7 @@ namespace Life
             else if(IsFinish())
             {
                 Timer.Stop();
-                Printer.Dialog($"The evolution has ended. Generation #{Generation}");
+                Printer.DialogSimple($"The evolution has ended. Generation #{Generation}", false);
             }
         }
         private void SaveField()
@@ -53,7 +85,7 @@ namespace Life
         {
             Timer.Elapsed += NextStep;
             EditField();
-            Printer.Print(Field);
+            Printer.Print(FieldToArray());
         }
         private void ChangePauseState()
         {
@@ -61,9 +93,15 @@ namespace Life
         }
         private void ClearField()
         {
-            for (int i = 0; i < Field.Count; i++)
+            for (int i = 0; i < SizeY; i++)
             {
-                Field[i].IsAlive = false;
+                for(int a = 0; a < SizeX; a++)
+                {
+                    Position position;
+                    position.X = a;
+                    position.Y = i;
+                    Field[position].IsAlive = false;
+                }
             }
         }
         private void ResizeField()
@@ -72,19 +110,22 @@ namespace Life
             {
                 for (int a = 0; a < SizeX; a++)
                 {
-                    Cell cell = new Cell()
-                    {
-                        Y = i,
-                        X = a
-                    };
-                    Field.Add(cell);
+                    Position position;
+                    position.X = a;
+                    position.Y = i;
+                    Cell cell = new Cell();
+                    cell.Position = position;
+                    Field.Add(position, cell);
                     StartProcess += () => cell.Process();
                 }
             }
         }
         private void SetCell(int x, int y, bool state = true)
         {
-            Field[SizeY * y + x].IsAlive = state;
+            Position position;
+            position.X = x;
+            position.Y = y;
+            Field[position].IsAlive = state;
         }
         private void RandomFill()
         {
@@ -99,7 +140,10 @@ namespace Life
                 int action = random.Next(0, 2);
                 if (action == 1)
                 {
-                    Field[idx].IsAlive = true;
+                    Position position;
+                    position.Y = idx / SizeY;
+                    position.X = idx - SizeY * position.Y;
+                    Field[position].IsAlive = true;
                 }
             }
         }
@@ -109,22 +153,22 @@ namespace Life
             bool isOk;
             do
             {
-                answer = Printer.Dialog("Width: ");
-                isOk = int.TryParse(answer, out _);
+                answer = Printer.DialogSimple("Width: ", true);
+                isOk = uint.TryParse(answer, out _);
                 if(!isOk)
                 {
-                    Printer.Dialog("Error: incorrect input");
+                    Printer.DialogSimple("Error: incorrect input", false);
                 }
             } while (!isOk);
             SizeX = int.Parse(answer);
             Printer.Width = SizeX;
             do
             {
-                answer = Printer.Dialog("Height: ");
+                answer = Printer.DialogSimple("Height: ", true);
                 isOk = int.TryParse(answer, out _);
                 if (!isOk)
                 {
-                    Printer.Dialog("Error: incorrect input");
+                    Printer.DialogSimple("Error: incorrect input", false);
                 }
             } while (!isOk);
             SizeY = int.Parse(answer);
@@ -134,30 +178,34 @@ namespace Life
             int option;
             do
             {
-                answer = Printer.Dialog("1. Fill the field manually\r\n2. Fill the field randomly");
+                List<string> options = new List<string>();
+                options.Add("Fill the field manually");
+                options.Add("Fill the field randomly");
+                answer = Printer.DialogWithOptions(options);
                 isOk = int.TryParse(answer, out option);
                 if(!isOk || (option != 1 && option != 2))
                 {
                     isOk = false;
-                    Printer.Dialog("Error: incorrect input");
+                    Printer.DialogSimple("Error: incorrect input", false);
                 }
             } while (!isOk);
             //manual
             if(option == 1)
             {
-                Printer.Print(Field);
+                Printer.Print(FieldToArray());
                 do
                 {
-                    answer = Printer.Dialog(
-                        "1. Set cell\r\n" +
-                        "2. Unset cell\r\n" +
-                        "3. Clear\r\n" +
-                        "4. Finish editing");
+                    List<string> options = new List<string>();
+                    options.Add("Set cell");
+                    options.Add("Unset cell");
+                    options.Add("Clear");
+                    options.Add("Finish editing");
+                    answer = Printer.DialogWithOptions(options);
                     isOk = int.TryParse(answer, out option);
                     if (!isOk || (option != 1 && option != 2 && option != 3 && option != 4))
                     {
                         isOk = false;
-                        Printer.Dialog("Error: incorrect input");
+                        Printer.DialogSimple("Error: incorrect input", false);
                     }
                     else
                     {
@@ -169,21 +217,21 @@ namespace Life
                                     int x;
                                     do
                                     {
-                                        answer = Printer.Dialog("X: ");
+                                        answer = Printer.DialogSimple("X: ", true);
                                         isOk = int.TryParse(answer, out x);
                                         if (!isOk || x < 0 || x >= SizeX)
                                         {
-                                            Printer.Dialog("Error: incorrect input");
+                                            Printer.DialogSimple("Error: incorrect input", false);
                                         }
                                     } while (!isOk);
                                     int y;
                                     do
                                     {
-                                        answer = Printer.Dialog("Y: ");
+                                        answer = Printer.DialogSimple("Y: ", true);
                                         isOk = int.TryParse(answer, out y);
                                         if (!isOk || y < 0 || y >= SizeY)
                                         {
-                                            Printer.Dialog("Error: incorrect input");
+                                            Printer.DialogSimple("Error: incorrect input", false);
                                         }
                                     } while (!isOk);
                                     SetCell(x, y);
@@ -195,21 +243,21 @@ namespace Life
                                     int x;
                                     do
                                     {
-                                        answer = Printer.Dialog("X: ");
+                                        answer = Printer.DialogSimple("X: ", true);
                                         isOk = int.TryParse(answer, out x);
                                         if (!isOk || x < 0 || x >= SizeX)
                                         {
-                                            Printer.Dialog("Error: incorrect input");
+                                            Printer.DialogSimple("Error: incorrect input", false);
                                         }
                                     } while (!isOk);
                                     int y;
                                     do
                                     {
-                                        answer = Printer.Dialog("Y: ");
+                                        answer = Printer.DialogSimple("Y: ", true);
                                         isOk = int.TryParse(answer, out y);
                                         if (!isOk || y < 0 || y >= SizeY)
                                         {
-                                            Printer.Dialog("Error: incorrect input");
+                                            Printer.DialogSimple("Error: incorrect input", false);
                                         }
                                     } while (!isOk);
                                     SetCell(x, y, false);

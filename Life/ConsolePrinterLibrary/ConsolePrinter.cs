@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Life.ConsolePrinter
+namespace ConsolePrinterLibrary
 {
-    class ConsolePrinter : IPrinter
+    public class ConsolePrinter : IPrinter
     {
         public ConsolePrinter()
         {
             Field idx = new Field() { Name = "idx" };
-            tc.Table.Fields.Add(idx);
-            tc.Table.Name = "Conway's Game of Life";
+            tp.Table.Fields.Add(idx);
+            tp.Table.Name = "Conway's Game of Life";
         }
-        private TableController tc = new TableController();
+        private TablePrinter tp = new TablePrinter();
         private List<Field> fields = new List<Field>();
         private List<Entry> entries = new List<Entry>();
         public string Info { get; set; }
@@ -29,7 +29,7 @@ namespace Life.ConsolePrinter
                 {
                     Field field = new Field() { Name = $"{i}" };
                     fields.Add(field);
-                    tc.Table.Fields.Add(field);
+                    tp.Table.Fields.Add(field);
                 }
             }
         }
@@ -54,29 +54,45 @@ namespace Life.ConsolePrinter
         {
             Console.Clear();
         }
-        public void Print(List<Cell> cells)
+        public void Print(bool[][] cells)
         {
             Clear();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine(Info);
-            for(int i = 0; i < cells.Count; i++)
+            for(int i = 0; i < cells.Length; i++)
             {
-                if(cells[i].IsAlive)
+                for(int a = 0; a < cells[i].Length; a++)
                 {
-                    tc.Table.Entries[cells[i].Y].Columns[fields[cells[i].X + 1]] = "▆";
-                }
-                else
-                {
-                    tc.Table.Entries[cells[i].Y].Columns[fields[cells[i].X + 1]] = " ";
+                    if(cells[i][a])
+                    {
+                        tp.Table.Entries[i].Columns[fields[a + 1]] = "▆";
+                    }
+                    else
+                    {
+                        tp.Table.Entries[i].Columns[fields[a + 1]] = " ";
+                    }
                 }
             }
-            Console.WriteLine(tc.GetTextTable());
+            Console.WriteLine(tp.GetTextTable());
         }
-        public string Dialog(string message)
+        public string DialogSimple(string message, bool answer)
         {
             Console.WriteLine(message);
-            string answer = Console.ReadLine();
-            return answer;
+            string result = string.Empty;
+            if (answer)
+                result = Console.ReadLine();
+            return result;
+        }
+
+        public string DialogWithOptions(List<string> options)
+        {
+            string result = string.Empty;
+            for(int i = 0; i < options.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. - {options[i]}");
+            }
+            result = Console.ReadLine();
+            return result;
         }
     }
 }
