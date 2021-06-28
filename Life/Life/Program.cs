@@ -2,7 +2,7 @@
 using Life;
 using ConsolePrinterLibrary;
 
-TimeController time = new TimeController();
-GameController<ConsolePrinter> gc = new GameController<ConsolePrinter>(time);
+TimeController<ConsolePrinter> time = new TimeController<ConsolePrinter>();
+time.GameControllers.Add(new GameController<ConsolePrinter>());
 time.Run();
 Console.ReadKey(true);

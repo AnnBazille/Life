@@ -8,11 +8,10 @@ using ConsolePrinterLibrary;
 
 namespace Life
 {
-    class GameController<T> where T : class, IPrinter, new()
+    public class GameController<T> where T : class, IPrinter, new()
     {
-        private TimeController timeController;
         private Timer Timer = new Timer(1000);
-        private Action StartProcess;
+        public Action StartProcess;
         private Dictionary<Position, Cell> Field = new Dictionary<Position, Cell>();
         public List<bool[]> FieldCopies = new List<bool[]>();
         public int SizeY { get; private set; }
@@ -20,10 +19,9 @@ namespace Life
         public ulong Generation { get; private set; } = 1;
         private IPrinter Printer;
         public bool IsPaused { get; private set; }
-        public GameController(TimeController time) 
+        public GameController() 
         {
             Printer = new T();
-            timeController = time;
         }
         private bool[][] FieldToArray()
         {
