@@ -8,101 +8,44 @@ using ConsolePrinterLibrary;
 
 namespace Life
 {
-    public class GameController<T> where T : class, IPrinter, new()
+    public class GameController<P> where P : class, IPrinter, new()
     {
-        private Timer Timer = new Timer(1000);
-        public Action StartProcess;
+        private Action StartProcess;
         private Dictionary<Position, Cell> Field = new Dictionary<Position, Cell>();
         public List<bool[]> FieldCopies = new List<bool[]>();
         public int SizeY { get; private set; }
         public int SizeX { get; private set; }
-        public ulong Generation { get; private set; } = 1;
-        private IPrinter Printer;
-        public bool IsPaused { get; private set; }
-        public GameController() 
+        public IPrinter Printer = new P();
+        private Cell Instance;
+        private FieldController fieldController;
+        public GameController(Cell instance)
         {
-            Printer = new T();
-        }
-        private bool[][] FieldToArray()
-        {
-            bool[][] array = new bool[SizeY][];
-            for(int i = 0; i < SizeY; i++)
-            {
-                array[i] = new bool[SizeX];
-                for(int a = 0; a < SizeX; a++)
-                {
-                    Position position;
-                    position.X = a;
-                    position.Y = i;
-                    if(Field[position].IsAlive)
-                    {
-                        array[i][a] = true;
-                    }
-                    else
-                    {
-                        array[i][a] = false;
-                    }
-                }
-            }
-            return array;
-        }
-        private bool[] SimplifyFieldArray(bool[][] source)
-        {
-            bool[] result = new bool[SizeY * SizeX];
-            for(int i = 0; i < SizeY; i++)
-            {
-                for(int a= 0; a < SizeX; a++)
-                {
-                    result[i * SizeY + SizeX] = source[i][a];
-                }
-            }
-            return result;
-        }
-        private void NextStep(object sender, EventArgs e)
-        {
-            if (StartProcess != null && !IsFinish() && !IsPaused)
-            {
-                Generation++;
-                StartProcess();
-            }
-            else if(IsFinish())
-            {
-                Timer.Stop();
-                Printer.DialogSimple($"The evolution has ended. Generation #{Generation}", false);
-            }
-        }
-        private void SaveField()
-        {
-            ;
-        }
-        private bool IsFinish()
-        {
-            return true;
+            fieldController = new FieldController(instance);
+            Instance = instance;
         }
         public void Run()
         {
-            Timer.Elapsed += NextStep;
-            EditField();
-            Printer.Print(FieldToArray());
-        }
-        private void ChangePauseState()
-        {
-            IsPaused = !IsPaused;
-        }
-        private void ClearField()
-        {
-            for (int i = 0; i < SizeY; i++)
+            if (!IsFinish())
             {
-                for(int a = 0; a < SizeX; a++)
-                {
-                    Position position;
-                    position.X = a;
-                    position.Y = i;
-                    Field[position].IsAlive = false;
-                }
+                StartProcess();
+            }
+            else
+            {
+                Printer.DialogSimple($"End of evolution.", false);
             }
         }
-        private void ResizeField()
+        private bool IsFinish()
+        {
+            if (IsEmptyField() || IsLoopedField())
+            { 
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool IsEmptyField()
         {
             for (int i = 0; i < SizeY; i++)
             {
@@ -111,41 +54,25 @@ namespace Life
                     Position position;
                     position.X = a;
                     position.Y = i;
-                    Cell cell = new Cell();
-                    cell.Position = position;
-                    Field.Add(position, cell);
-                    StartProcess += () => cell.Process();
+                    if(Field[position].IsAlive)
+                    {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        private void SetCell(int x, int y, bool state = true)
+        private bool IsLoopedField()
         {
-            Position position;
-            position.X = x;
-            position.Y = y;
-            Field[position].IsAlive = state;
-        }
-        private void RandomFill()
-        {
-            Random random = new Random(DateTime.Now.Millisecond);
-            int count = random.Next(SizeX * SizeY / 4, (SizeX * SizeY + 1) * 3 / 4);
-            int center = SizeX * SizeY / 2 - 1;
-            for (int i = 0; i < count; i++)
+            var lastcopy = FieldCopies.Last();
+            for(int i = 0; i < FieldCopies.Count - 1; i++)
             {
-                int idx = center + (int)(i * Math.Pow(-1, i));
-                idx = Math.Abs(idx);
-                idx %= SizeX * SizeY;
-                int action = random.Next(0, 2);
-                if (action == 1)
-                {
-                    Position position;
-                    position.Y = idx / SizeY;
-                    position.X = idx - SizeY * position.Y;
-                    Field[position].IsAlive = true;
-                }
+                if (FieldCopies[i].SequenceEqual(lastcopy))
+                    return false;
             }
+            return true;
         }
-        private void EditField()
+        public void EditField()
         {
             string answer;
             bool isOk;
@@ -158,21 +85,21 @@ namespace Life
                     Printer.DialogSimple("Error: incorrect input", false);
                 }
             } while (!isOk);
-            SizeX = int.Parse(answer);
-            Printer.Width = SizeX;
+            fieldController.SizeX = int.Parse(answer);;
+            Printer.Width = fieldController.SizeX;
             do
             {
                 answer = Printer.DialogSimple("Height: ", true);
-                isOk = int.TryParse(answer, out _);
+                isOk = uint.TryParse(answer, out _);
                 if (!isOk)
                 {
                     Printer.DialogSimple("Error: incorrect input", false);
                 }
             } while (!isOk);
-            SizeY = int.Parse(answer);
-            Printer.Height = SizeY;
-            ResizeField();
-            StartProcess += () => SaveField();
+            fieldController.SizeY = int.Parse(answer);
+            Printer.Height = fieldController.SizeY;
+            fieldController.ResizeField(StartProcess);
+            StartProcess += () => fieldController.SaveField();
             int option;
             do
             {
@@ -181,7 +108,7 @@ namespace Life
                 options.Add("Fill the field randomly");
                 answer = Printer.DialogWithOptions(options);
                 isOk = int.TryParse(answer, out option);
-                if(!isOk || (option != 1 && option != 2))
+                if(!isOk || !(option != 1 || option != 2))
                 {
                     isOk = false;
                     Printer.DialogSimple("Error: incorrect input", false);
@@ -190,7 +117,7 @@ namespace Life
             //manual
             if(option == 1)
             {
-                Printer.Print(FieldToArray());
+                Printer.Print(fieldController.FieldToArray());
                 do
                 {
                     List<string> options = new List<string>();
@@ -200,7 +127,7 @@ namespace Life
                     options.Add("Finish editing");
                     answer = Printer.DialogWithOptions(options);
                     isOk = int.TryParse(answer, out option);
-                    if (!isOk || (option != 1 && option != 2 && option != 3 && option != 4))
+                    if (!isOk || !(option != 1 || option != 2 || option != 3 || option != 4))
                     {
                         isOk = false;
                         Printer.DialogSimple("Error: incorrect input", false);
@@ -232,7 +159,7 @@ namespace Life
                                             Printer.DialogSimple("Error: incorrect input", false);
                                         }
                                     } while (!isOk);
-                                    SetCell(x, y);
+                                    fieldController.SetCell(x, y);
                                     break;
                                 }
                             //unset cell
@@ -258,11 +185,11 @@ namespace Life
                                             Printer.DialogSimple("Error: incorrect input", false);
                                         }
                                     } while (!isOk);
-                                    SetCell(x, y, false);
+                                    fieldController.SetCell(x, y, false);
                                     break;
                                 }
                             case 3:
-                                ClearField();
+                                fieldController.ClearField();
                                 break;
                             default:
                                 break;
@@ -276,8 +203,11 @@ namespace Life
             //random
             else
             {
-                RandomFill();
+                fieldController.RandomFill();
+                Printer.Print(fieldController.FieldToArray());
             }
+            fieldController.SaveField();
+            ;
         }
     }
 }

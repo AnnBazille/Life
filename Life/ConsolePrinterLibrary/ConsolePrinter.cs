@@ -10,8 +10,6 @@ namespace ConsolePrinterLibrary
     {
         public ConsolePrinter()
         {
-            Field idx = new Field() { Name = "idx" };
-            tp.Table.Fields.Add(idx);
             tp.Table.Name = "Conway's Game of Life";
         }
         private TablePrinter tp = new TablePrinter();
@@ -25,9 +23,17 @@ namespace ConsolePrinterLibrary
             set
             {
                 _width = value;
-                for(int i = 0; i < _width; i++)
+                for(int i = -1; i < _width; i++)
                 {
-                    Field field = new Field() { Name = $"{i}" };
+                    Field field;
+                    if (i == -1)
+                    {
+                        field = new Field() { Name = "idx" };
+                    }
+                    else
+                    {
+                        field = new Field() { Name = $"{i}" }; 
+                    }
                     fields.Add(field);
                     tp.Table.Fields.Add(field);
                 }
@@ -43,10 +49,18 @@ namespace ConsolePrinterLibrary
                 for(int i = 0; i < _heigth; i++)
                 {
                     Entry entry = new Entry();
-                    for(int a = 0; a < _width; a++)
+                    for(int a = 0; a < _width + 1; a++)
                     {
-                        entry.Columns.Add(fields[a], " ");
+                        if(a == 0)
+                        {
+                            entry.Columns.Add(fields[a], $"{i}");
+                        }
+                        else
+                        {
+                            entry.Columns.Add(fields[a], " ");
+                        }
                     }
+                    tp.Table.Entries.Add(entry);
                 }
             }
         }
@@ -65,7 +79,7 @@ namespace ConsolePrinterLibrary
                 {
                     if(cells[i][a])
                     {
-                        tp.Table.Entries[i].Columns[fields[a + 1]] = "▆";
+                        tp.Table.Entries[i].Columns[fields[a + 1]] = "*";
                     }
                     else
                     {

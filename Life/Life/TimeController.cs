@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
 using ConsolePrinterLibrary;
 
 namespace Life
@@ -19,11 +14,19 @@ namespace Life
         /// 0 for continuous evolution, any other value specifies maximum amount of steps
         /// </summary>
         public ulong MaxGeneration { get; set; } = 0;
-
         public void Run()
         {
+            SetUp();
             Thread thread = new Thread(new ParameterizedThreadStart(Process));
             thread.Start(IsPaused);
+        }
+        private void SetUp()
+        {
+            for(int i = 0; i < GameControllers.Count; i++)
+            {
+                GameControllers[i].Printer.DialogSimple($"Editing the field #{i + 1}", false);
+                GameControllers[i].EditField();
+            }
         }
         private void Process(object paused)
         {
@@ -31,10 +34,11 @@ namespace Life
             {
                 if(!(bool)paused)
                 {
+                    Generation++;
                     Thread.Sleep(SleepMilliseconds);
                     for (int i = 0; i < GameControllers.Count; i++)
                     {
-                        GameControllers[i].StartProcess();
+                        GameControllers[i].Run();
                     }
                 }
             }
