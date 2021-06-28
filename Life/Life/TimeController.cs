@@ -9,6 +9,7 @@ namespace Life
         public ulong Generation { get; private set; } = 1;
         public ushort SleepMilliseconds { get; set; } = 1000;
         public bool IsPaused = false;
+        public T Printer = new T();
         public List<GameController<T>> GameControllers { get; set; } = new List<GameController<T>>();
         /// <summary>
         /// 0 for continuous evolution, any other value specifies maximum amount of steps
@@ -30,16 +31,26 @@ namespace Life
         }
         private void Process(object paused)
         {
+            bool NextStep = false;
             while (MaxGeneration == 0 || Generation <= MaxGeneration)
             {
                 if(!(bool)paused)
                 {
-                    Generation++;
-                    Thread.Sleep(SleepMilliseconds);
                     for (int i = 0; i < GameControllers.Count; i++)
                     {
-                        GameControllers[i].Run();
+                        if (!GameControllers[i].IsEnd)
+                        {
+                            GameControllers[i].Run();
+                        }
+                        NextStep |= GameControllers[i].IsEnd;
                     }
+                    Printer.DialogSimple($"Generation #{Generation}", false);
+                    Generation++;
+                    Thread.Sleep(SleepMilliseconds);
+                }
+                if(NextStep)
+                {
+                    break;
                 }
             }
         }

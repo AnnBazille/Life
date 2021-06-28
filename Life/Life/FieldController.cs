@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsolePrinterLibrary;
 
 namespace Life
 {
-    public class FieldController
+    public class FieldController<P> where P : class, IPrinter, new()
     {
-        public Dictionary<Position, Cell> Field = new Dictionary<Position, Cell>();
+        public Dictionary<Position, Cell<P>> Field = new Dictionary<Position, Cell<P>>();
+        private GameController<P> gameController;
         public List<bool[]> FieldCopies = new List<bool[]>();
         public int SizeY { get; set; }
         public int SizeX { get; set; }
-        private Cell Instance;
-        public FieldController(Cell instance)
+        private Cell<P> Instance;
+        public FieldController(Cell<P> instance, GameController<P> gc)
         {
             Instance = instance;
+            gameController = gc;
         }
         public bool[][] FieldToArray()
         {
@@ -52,7 +55,7 @@ namespace Life
             }
             return result;
         }
-        public void ResizeField(Action action)
+        public void ResizeField()
         {
             for (int i = 0; i < SizeY; i++)
             {
@@ -61,10 +64,11 @@ namespace Life
                     Position position;
                     position.X = a;
                     position.Y = i;
-                    Cell cell = Instance.GetInstance();
+                    Cell<P> cell = Instance.GetInstance();
                     cell.Position = position;
+                    cell.FieldController = this;
                     Field.Add(position, cell);
-                    action += () => cell.Process();
+                    gameController.StartProcess += () => cell.Process();
                 }
             }
         }

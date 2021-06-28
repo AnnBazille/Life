@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsolePrinterLibrary;
 
 namespace Life
 {
@@ -11,7 +12,7 @@ namespace Life
         public int X;
         public int Y;
     }
-    public abstract class Cell
+    public abstract class Cell<P> where P : class, IPrinter, new()
     {
         protected List<bool> CollectNeighbours()
         {
@@ -117,67 +118,109 @@ namespace Life
         }
         public Position Position { get; set; }
         public bool IsAlive { get; set; } = false;
-        public FieldController FieldController;
+        public FieldController<P> FieldController;
         abstract public void Process();
-        abstract public Cell GetInstance();
+        abstract public Cell<P> GetInstance();
     }
-    public class Cell23 : Cell
+    public class Cell233<P> : Cell<P> where P : class, IPrinter, new()
     {
-        public override Cell GetInstance()
+        public override Cell<P> GetInstance()
         {
-            return new Cell23();
+            return new Cell233<P>();
         }
         public override void Process()
         {
             var neighbours = CollectNeighbours();
             int alive = neighbours.Where(n => n == true).Count();
-            if (alive >= 2 && alive <= 3)
-            { 
-                IsAlive = true; 
+            if(IsAlive)
+            {
+                if (alive >= 2 && alive <= 3)
+                {
+                    IsAlive = true;
+                }
+                else
+                {
+                    IsAlive = false;
+                }
             }
             else
             {
-                IsAlive = false;
+                if(alive == 3)
+                {
+                    IsAlive = true;
+                }
+                else
+                {
+                    IsAlive = false;
+                }
             }
         }
     }
-    public class Cell34 : Cell
+    public class Cell344<P> : Cell<P> where P : class, IPrinter, new()
     {
-        public override Cell GetInstance()
+        public override Cell<P> GetInstance()
         {
-            return new Cell34();
+            return new Cell344<P>();
         }
         public override void Process()
         {
             var neighbours = CollectNeighbours();
             int alive = neighbours.Where(n => n == true).Count();
-            if (alive >= 3 && alive <= 4)
+            if (IsAlive)
             {
-                IsAlive = true;
+                if (alive >= 3 && alive <= 4)
+                {
+                    IsAlive = true;
+                }
+                else
+                {
+                    IsAlive = false;
+                }
             }
             else
             {
-                IsAlive = false;
+                if (alive == 4)
+                {
+                    IsAlive = true;
+                }
+                else
+                {
+                    IsAlive = false;
+                }
             }
         }
     }
-    public class Cell24 : Cell
+    public class Cell234<P> : Cell<P> where P : class, IPrinter, new()
     {
-        public override Cell GetInstance()
+        public override Cell<P> GetInstance()
         {
-            return new Cell24();
+            return new Cell234<P>();
         }
         public override void Process()
         {
             var neighbours = CollectNeighbours();
             int alive = neighbours.Where(n => n == true).Count();
-            if (alive >= 2 && alive <= 4)
+            if (IsAlive)
             {
-                IsAlive = true;
+                if (alive >= 2 && alive <= 4)
+                {
+                    IsAlive = true;
+                }
+                else
+                {
+                    IsAlive = false;
+                }
             }
             else
             {
-                IsAlive = false;
+                if (alive == 3)
+                {
+                    IsAlive = true;
+                }
+                else
+                {
+                    IsAlive = false;
+                }
             }
         }
     }
