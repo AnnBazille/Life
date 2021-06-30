@@ -32,26 +32,23 @@ namespace LifeLibrary
         }
         private void Process(object paused)
         {
-            bool NextStep = false;
+            bool isEnd;
             while (MaxGeneration == 0 || Generation <= MaxGeneration)
             {
+                isEnd = true;
                 if(!(bool)paused)
                 {
                     Printer.Clear();
                     for (int i = 0; i < GameControllers.Count; i++)
                     {
-                        
-                        if (!GameControllers[i].IsEnd)
-                        {
-                            GameControllers[i].Run();
-                        }
-                        NextStep |= GameControllers[i].IsEnd;
+                        GameControllers[i].Run();
+                        isEnd &= GameControllers[i].IsEnd;
                     }
                     Printer.DialogSimple($"Generation #{Generation}", false);
                     Generation++;
                     Thread.Sleep(SleepMilliseconds);
                 }
-                if(NextStep)
+                if(isEnd)
                 {
                     break;
                 }

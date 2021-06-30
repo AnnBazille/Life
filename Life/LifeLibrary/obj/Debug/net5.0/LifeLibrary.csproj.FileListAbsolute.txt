@@ -1,0 +1,12 @@
+H:\SoftServe\projects\Life\Life\LifeLibrary\bin\Debug\net5.0\LifeLibrary.deps.json
+H:\SoftServe\projects\Life\Life\LifeLibrary\bin\Debug\net5.0\LifeLibrary.dll
+H:\SoftServe\projects\Life\Life\LifeLibrary\bin\Debug\net5.0\ref\LifeLibrary.dll
+H:\SoftServe\projects\Life\Life\LifeLibrary\bin\Debug\net5.0\LifeLibrary.pdb
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\LifeLibrary.csprojAssemblyReference.cache
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\LifeLibrary.GeneratedMSBuildEditorConfig.editorconfig
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\LifeLibrary.AssemblyInfoInputs.cache
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\LifeLibrary.AssemblyInfo.cs
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\LifeLibrary.csproj.CoreCompileInputs.cache
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\LifeLibrary.dll
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\ref\LifeLibrary.dll
+H:\SoftServe\projects\Life\Life\LifeLibrary\obj\Debug\net5.0\LifeLibrary.pdb

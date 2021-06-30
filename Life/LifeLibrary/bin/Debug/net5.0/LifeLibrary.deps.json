@@ -6,14 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "ConsolePrinterLibrary/1.0.0": {
-        "dependencies": {
-          "LifeLibrary": "1.0.0"
-        },
-        "runtime": {
-          "ConsolePrinterLibrary.dll": {}
-        }
-      },
       "LifeLibrary/1.0.0": {
         "runtime": {
           "LifeLibrary.dll": {}
@@ -22,11 +14,6 @@
     }
   },
   "libraries": {
-    "ConsolePrinterLibrary/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "LifeLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,

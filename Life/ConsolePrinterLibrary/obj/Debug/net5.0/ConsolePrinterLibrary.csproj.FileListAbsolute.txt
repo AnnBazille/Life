@@ -10,3 +10,6 @@ H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Debug\net5.0\ConsolePr
 H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Debug\net5.0\ConsolePrinterLibrary.dll
 H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Debug\net5.0\ref\ConsolePrinterLibrary.dll
 H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Debug\net5.0\ConsolePrinterLibrary.pdb
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\bin\Debug\net5.0\LifeLibrary.dll
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\bin\Debug\net5.0\LifeLibrary.pdb
+H:\SoftServe\projects\Life\Life\ConsolePrinterLibrary\obj\Debug\net5.0\ConsolePrinterLibrary.csproj.CopyComplete
