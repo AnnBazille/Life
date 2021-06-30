@@ -9,7 +9,8 @@ namespace LifeLibrary
         public int Height { get; set; }
         public void Clear();
         public void Print(bool[][] cells);
-        public string DialogSimple(string message, bool answer);
+        public string DialogSimple(string message, bool answer, object sync = null);
         public string DialogWithOptions(List<string> options);
+        public void FinishEditing();
     }
 }

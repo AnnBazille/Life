@@ -86,7 +86,7 @@ namespace ConsolePrinterLibrary
             }
             Console.WriteLine(tp.GetTextTable());
         }
-        public string DialogSimple(string message, bool answer)
+        public string DialogSimple(string message, bool answer, object sync = null)
         {
             Console.WriteLine(message);
             string result = string.Empty;
@@ -104,6 +104,11 @@ namespace ConsolePrinterLibrary
             }
             result = Console.ReadLine();
             return result;
+        }
+
+        public void FinishEditing()
+        {
+            DialogSimple("Editing is finished.", false);
         }
     }
 }

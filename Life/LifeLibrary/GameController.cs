@@ -191,7 +191,8 @@ namespace LifeLibrary
                         }
                         //finish editing
                         if (option == 4)
-                        { 
+                        {
+                            Printer.FinishEditing();
                             break;
                         }
 
