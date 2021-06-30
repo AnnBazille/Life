@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using ConsolePrinterLibrary;
 
-namespace Life
+namespace LifeLibrary
 {
     public class GameController<P> where P : class, IPrinter, new()
     {
@@ -22,7 +18,6 @@ namespace Life
         }
         public void Run()
         {
-            Printer.Clear();
             Printer.Print(fieldController.FieldToArray());
             if (!IsFinish())
             {

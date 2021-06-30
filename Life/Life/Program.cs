@@ -1,5 +1,5 @@
 ﻿using System;
-using Life;
+using LifeLibrary;
 using ConsolePrinterLibrary;
 
 TimeController<ConsolePrinter> time = new TimeController<ConsolePrinter>();

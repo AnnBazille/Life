@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LifeLibrary;
 
 namespace ConsolePrinterLibrary
 {
@@ -70,7 +68,6 @@ namespace ConsolePrinterLibrary
         }
         public void Print(bool[][] cells)
         {
-            Clear();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine(Info);
             for(int i = 0; i < cells.Length; i++)

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ConsolePrinterLibrary;
 
-namespace Life
+namespace LifeLibrary
 {
     public class FieldController<P> where P : class, IPrinter, new()
     {

@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
-      "LifeLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "compile": {
-          "bin/placeholder/LifeLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/LifeLibrary.dll": {}
-        }
-      }
-    }
+    "net5.0": {}
   },
-  "libraries": {
-    "LifeLibrary/1.0.0": {
-      "type": "project",
-      "path": "../LifeLibrary/LifeLibrary.csproj",
-      "msbuildProject": "../LifeLibrary/LifeLibrary.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": [
-      "LifeLibrary >= 1.0.0"
-    ]
+    "net5.0": []
   },
   "packageFolders": {
     "C:\\Users\\drann\\.nuget\\packages\\": {},
@@ -34,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\ConsolePrinterLibrary.csproj",
-      "projectName": "ConsolePrinterLibrary",
-      "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\ConsolePrinterLibrary.csproj",
+      "projectUniqueName": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj",
+      "projectName": "LifeLibrary",
+      "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj",
       "packagesPath": "C:\\Users\\drann\\.nuget\\packages\\",
-      "outputPath": "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\obj\\",
+      "outputPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -59,11 +40,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj": {
-              "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using ConsolePrinterLibrary;
 
-namespace Life
+namespace LifeLibrary
 {
     public class TimeController<T> where T : class, IPrinter, new()
     {
@@ -10,7 +9,9 @@ namespace Life
         public ushort SleepMilliseconds { get; set; } = 1000;
         public bool IsPaused = false;
         public T Printer = new T();
+
         public List<GameController<T>> GameControllers { get; set; } = new List<GameController<T>>();
+
         /// <summary>
         /// 0 for continuous evolution, any other value specifies maximum amount of steps
         /// </summary>
@@ -36,8 +37,10 @@ namespace Life
             {
                 if(!(bool)paused)
                 {
+                    Printer.Clear();
                     for (int i = 0; i < GameControllers.Count; i++)
                     {
+                        
                         if (!GameControllers[i].IsEnd)
                         {
                             GameControllers[i].Run();
