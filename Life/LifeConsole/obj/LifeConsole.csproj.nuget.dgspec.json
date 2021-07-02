@@ -1,0 +1,196 @@
+{
+  "format": 1,
+  "restore": {
+    "H:\\SoftServe\\projects\\Life\\Life\\LifeConsole\\LifeConsole.csproj": {}
+  },
+  "projects": {
+    "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\ConsolePrinterLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\ConsolePrinterLibrary.csproj",
+        "projectName": "ConsolePrinterLibrary",
+        "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\ConsolePrinterLibrary.csproj",
+        "packagesPath": "C:\\Users\\drann\\.nuget\\packages\\",
+        "outputPath": "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\drann\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj": {
+                "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\SoftServe\\projects\\Life\\Life\\LifeConsole\\LifeConsole.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\SoftServe\\projects\\Life\\Life\\LifeConsole\\LifeConsole.csproj",
+        "projectName": "LifeConsole",
+        "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeConsole\\LifeConsole.csproj",
+        "packagesPath": "C:\\Users\\drann\\.nuget\\packages\\",
+        "outputPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeConsole\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\drann\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\ConsolePrinterLibrary.csproj": {
+                "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\ConsolePrinterLibrary\\ConsolePrinterLibrary.csproj"
+              },
+              "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj": {
+                "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj",
+        "projectName": "LifeLibrary",
+        "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj",
+        "packagesPath": "C:\\Users\\drann\\.nuget\\packages\\",
+        "outputPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\drann\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
