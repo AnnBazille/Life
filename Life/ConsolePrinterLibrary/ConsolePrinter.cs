@@ -13,7 +13,6 @@ namespace ConsolePrinterLibrary
         private TablePrinter tp = new TablePrinter();
         private List<Field> fields = new List<Field>();
         private List<Entry> entries = new List<Entry>();
-        public string Info { get; set; }
         private int _width;
         public int Width
         {
@@ -69,7 +68,6 @@ namespace ConsolePrinterLibrary
         public void Print(bool[][] cells)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine(Info);
             for(int i = 0; i < cells.Length; i++)
             {
                 for(int a = 0; a < cells[i].Length; a++)

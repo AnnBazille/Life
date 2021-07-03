@@ -4,7 +4,6 @@ namespace LifeLibrary
 {
     public interface IPrinter
     {
-        public string Info { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public void Clear();

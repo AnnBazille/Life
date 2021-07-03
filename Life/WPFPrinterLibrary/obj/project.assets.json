@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0-windows7.0": {}
+    "net5.0-windows7.0": {
+      "LifeLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/LifeLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LifeLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "LifeLibrary/1.0.0": {
+      "type": "project",
+      "path": "../LifeLibrary/LifeLibrary.csproj",
+      "msbuildProject": "../LifeLibrary/LifeLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0-windows7.0": []
+    "net5.0-windows7.0": [
+      "LifeLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\drann\\.nuget\\packages\\": {},
@@ -40,7 +59,11 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj": {
+              "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
