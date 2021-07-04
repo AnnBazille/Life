@@ -14,27 +14,27 @@ namespace WPFPrinterLibrary
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            ;
         }
 
         public string DialogSimple(string message, bool answer, object sync = null)
         {
-            throw new NotImplementedException();
+            ;
         }
 
         public string DialogWithOptions(List<string> options)
         {
-            throw new NotImplementedException();
+            ;
         }
 
         public void FinishEditing()
         {
-            throw new NotImplementedException();
+            ;
         }
 
         public void Print(bool[][] cells)
         {
-            throw new NotImplementedException();
+            ;
         }
     }
 }
