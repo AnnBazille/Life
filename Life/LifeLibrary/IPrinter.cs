@@ -11,5 +11,7 @@ namespace LifeLibrary
         public string DialogSimple(string message, bool answer, object sync = null);
         public string DialogWithOptions(List<string> options);
         public void FinishEditing();
+        public void GenerationMessage(ulong generation);
+        public void FieldMessage(string message);
     }
 }

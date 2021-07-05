@@ -26,8 +26,8 @@ namespace LifeLibrary
         {
             for(int i = 0; i < GameControllers.Count; i++)
             {
-                GameControllers[i].Printer.DialogSimple($"Editing the field #{i + 1}", false);
-                GameControllers[i].EditField();
+                //GameControllers[i].Printer.DialogSimple($"Editing the field #{i + 1}", false);
+                GameControllers[i].EditField((uint)i + 1);
             }
         }
         private void Process(object paused)
@@ -44,7 +44,8 @@ namespace LifeLibrary
                         GameControllers[i].Run();
                         isEnd &= GameControllers[i].IsEnd;
                     }
-                    Printer.DialogSimple($"Generation #{Generation}", false);
+                    //Printer.DialogSimple($"Generation #{Generation}", false);
+                    Printer.GenerationMessage(Generation);
                     Generation++;
                     Thread.Sleep(SleepMilliseconds);
                 }

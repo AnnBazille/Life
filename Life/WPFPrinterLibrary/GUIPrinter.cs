@@ -32,6 +32,11 @@ namespace WPFPrinterLibrary
             ;
         }
 
+        public void GenerationMessage(ulong generation)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Print(bool[][] cells)
         {
             ;

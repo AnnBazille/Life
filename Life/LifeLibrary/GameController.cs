@@ -10,6 +10,7 @@ namespace LifeLibrary
         public IPrinter Printer = new P();
         private Cell<P> Instance;
         private FieldController<P> fieldController;
+        private uint _fieldno;
         public bool IsEnd = false;
         public GameController(Cell<P> instance)
         {
@@ -67,8 +68,9 @@ namespace LifeLibrary
             }
             return false;
         }
-        public void EditField()
+        public void EditField(uint number)
         {
+            _fieldno = number;
             string answer;
             bool isOk;
             do

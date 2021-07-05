@@ -108,5 +108,15 @@ namespace ConsolePrinterLibrary
         {
             DialogSimple("Editing is finished.", false);
         }
+
+        public void GenerationMessage(ulong generation)
+        {
+            Console.WriteLine($"Generation #{generation}");
+        }
+
+        public void FieldMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }
