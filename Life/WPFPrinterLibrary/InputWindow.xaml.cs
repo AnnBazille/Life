@@ -19,18 +19,17 @@ namespace WPFPrinterLibrary
     /// </summary>
     public partial class InputWindow : Window
     {
-        private String _answer;
+        public string Answer { get; set; }
 
-        public InputWindow(string message, String answer)
+        public InputWindow(string message)
         {
             InitializeComponent();
-            _answer = answer;
             lbMessage.Text = message;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            _answer = txInput.Text;
+            Answer = txInput.Text;
             Close();
         }
     }

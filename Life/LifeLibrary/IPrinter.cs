@@ -6,12 +6,14 @@ namespace LifeLibrary
     {
         public int Width { get; set; }
         public int Height { get; set; }
+        public object Target { get; set; }
         public void Clear();
-        public void Print(bool[][] cells, object target = null);
+        public void Print(bool[][] cells);
         public string DialogSimple(string message, bool answer, object sync = null);
         public string DialogWithOptions(List<string> options);
-        public void FinishEditing(object target = null);
+        public void StartEditing();
+        public void FinishEditing(object syncfield);
         public void GenerationMessage(ulong generation, object target = null);
-        public void FieldMessage(string message, object target = null);
+        public void FieldMessage(string message);
     }
 }

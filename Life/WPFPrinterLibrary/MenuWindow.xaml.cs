@@ -83,6 +83,7 @@ namespace WPFPrinterLibrary
             tbSleepTime.IsReadOnly = true;
             btnSleepTime.IsEnabled = false;
             btnRun.IsEnabled = false;
+            _timeController.SyncWindow = this;
             _timeController.Run();
         }
     }

@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WPFPrinterLibrary
 {
@@ -19,12 +10,12 @@ namespace WPFPrinterLibrary
     /// </summary>
     public partial class SelectWindow : Window
     {
-        private String _answer;
+        public string Answer { get; set; }
+        private string _answer;
 
-        public SelectWindow(List<string> options, String answer)
+        public SelectWindow(List<string> options)
         {
             InitializeComponent();
-            _answer = answer;
             for(int i = 0; i < options.Count; i++)
             {
                 Button button = new Button();
@@ -41,7 +32,7 @@ namespace WPFPrinterLibrary
 
         private void btnOption_Click(object sender, RoutedEventArgs e)
         {
-            _answer = (sender as Button).Tag.ToString();
+            Answer = (sender as Button).Tag.ToString();
             Close();
         }
     }

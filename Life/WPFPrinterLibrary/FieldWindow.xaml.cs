@@ -20,13 +20,17 @@ namespace WPFPrinterLibrary
     public partial class FieldWindow : Window
     {
         public List<Button> Buttons { get; set; } = new List<Button>();
-        public FieldWindow(int width, int height)
+        public FieldWindow()
         {
             InitializeComponent();
-            for(int i = 0; i < height; i++)
+        }
+
+        public void SetSize(int width, int height)
+        {
+            for (int i = 0; i < height; i++)
             {
                 GridField.RowDefinitions.Add(new RowDefinition());
-                for(int a = 0; a < width; a++)
+                for (int a = 0; a < width; a++)
                 {
                     GridField.ColumnDefinitions.Add(new ColumnDefinition());
                     Button button = new Button();

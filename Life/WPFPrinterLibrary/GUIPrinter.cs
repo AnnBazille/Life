@@ -19,16 +19,22 @@ namespace WPFPrinterLibrary
     {
         public int Width { get; set ; }
         public int Height { get; set; }
-
+        public object Target { get; set; } = new FieldWindow();
         public void Clear() { }
-
+        public void StartEditing()
+        {
+            DialogSimple("Editing has started.", false);
+            (Target as FieldWindow).SetSize(Width, Height);
+            (Target as FieldWindow).Show();
+        }
         public string DialogSimple(string message, bool answer, object sync = null)
         {
             String result = string.Empty;
             if(answer)
             {
-                InputWindow window = new InputWindow(message, result);
+                InputWindow window = new InputWindow(message);
                 window.ShowDialog();
+                result = window.Answer;
             }
             else
             {
@@ -40,44 +46,40 @@ namespace WPFPrinterLibrary
 
         public string DialogWithOptions(List<string> options)
         {
-            String result = string.Empty;
-            SelectWindow window = new SelectWindow(options, result);
+            SelectWindow window = new SelectWindow(options);
             window.ShowDialog();
-            return result;
+            return window.Answer;
         }
 
-        public void FieldMessage(string message, object target = null)
+        public void FieldMessage(string message)
         {
-            var window = target as FieldWindow;
-            window.FieldMessage.Text = message;
+            (Target as FieldWindow).FieldMessage.Text = message;
         }
 
-        public void FinishEditing(object target = null)
+        public void FinishEditing(object syncfield)
         {
-            var window = target as FieldWindow;
-            window.LockCells();
+            (Target as FieldWindow).LockCells();
         }
 
         public void GenerationMessage(ulong generation, object target = null)
         {
-            var window = target as FieldWindow;
-            window.FieldMessage.Text = $"Generation #{generation}";
+            var window = target as MenuWindow;
+            window.tbGeneration.Text = generation.ToString();
         }
 
-        public void Print(bool[][] cells, object target = null)
+        public void Print(bool[][] cells)
         {
-            var window = target as FieldWindow;
             for(int i = 0; i < Height; i++)
             {
                 for(int a = 0; a < Width; a++)
                 {
                     if(cells[i][a])
                     {
-                        window.Buttons[i * Height + a * Width].Background = new SolidColorBrush(Colors.Red);
+                        (Target as FieldWindow).Buttons[i * Width + a].Background = new SolidColorBrush(Colors.Red);
                     }
                     else
                     {
-                        window.Buttons[i * Height + a * Width].Background = new SolidColorBrush(Colors.White);
+                        (Target as FieldWindow).Buttons[i * Width + a].Background = new SolidColorBrush(Colors.White);
                     }
                 }
             }

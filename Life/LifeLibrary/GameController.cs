@@ -69,7 +69,7 @@ namespace LifeLibrary
         }
         public void EditField(uint number)
         {
-            Printer.FieldMessage($"Field #{number}...");
+            Printer.FieldMessage($"Field #{number}");
             string answer;
             bool isOk;
             do
@@ -95,6 +95,7 @@ namespace LifeLibrary
             fieldController.SizeY = int.Parse(answer);
             Printer.Height = fieldController.SizeY;
             fieldController.ResizeField();
+            Printer.StartEditing();
             StartProcess += () => fieldController.SaveField();
             int option;
             do
@@ -138,7 +139,7 @@ namespace LifeLibrary
                                     int x;
                                     do
                                     {
-                                        answer = Printer.DialogSimple("X: ", true);
+                                        answer = Printer.DialogSimple("X: ", true, Printer);
                                         isOk = int.TryParse(answer, out x);
                                         if (!isOk || x < 0 || x >= fieldController.SizeX)
                                         {
@@ -148,7 +149,7 @@ namespace LifeLibrary
                                     int y;
                                     do
                                     {
-                                        answer = Printer.DialogSimple("Y: ", true);
+                                        answer = Printer.DialogSimple("Y: ", true, Printer);
                                         isOk = int.TryParse(answer, out y);
                                         if (!isOk || y < 0 || y >= fieldController.SizeY)
                                         {
@@ -164,7 +165,7 @@ namespace LifeLibrary
                                     int x;
                                     do
                                     {
-                                        answer = Printer.DialogSimple("X: ", true);
+                                        answer = Printer.DialogSimple("X: ", true, Printer);
                                         isOk = int.TryParse(answer, out x);
                                         if (!isOk || x < 0 || x >= fieldController.SizeX)
                                         {
@@ -174,7 +175,7 @@ namespace LifeLibrary
                                     int y;
                                     do
                                     {
-                                        answer = Printer.DialogSimple("Y: ", true);
+                                        answer = Printer.DialogSimple("Y: ", true, Printer);
                                         isOk = int.TryParse(answer, out y);
                                         if (!isOk || y < 0 || y >= fieldController.SizeY)
                                         {
@@ -193,7 +194,7 @@ namespace LifeLibrary
                         //finish editing
                         if (option == 4)
                         {
-                            Printer.FinishEditing();
+                            Printer.FinishEditing(fieldController);
                             break;
                         }
 

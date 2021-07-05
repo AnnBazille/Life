@@ -13,6 +13,7 @@ namespace ConsolePrinterLibrary
         private TablePrinter tp = new TablePrinter();
         private List<Field> fields = new List<Field>();
         private List<Entry> entries = new List<Entry>();
+        public object Target { get; set; }
         private int _width;
         public int Width
         {
@@ -65,7 +66,7 @@ namespace ConsolePrinterLibrary
         {
             Console.Clear();
         }
-        public void Print(bool[][] cells, object target = null)
+        public void Print(bool[][] cells)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             for(int i = 0; i < cells.Length; i++)
@@ -103,20 +104,23 @@ namespace ConsolePrinterLibrary
             result = Console.ReadLine();
             return result;
         }
-
-        public void FinishEditing(object target = null)
+        public void StartEditing()
+        {
+            DialogSimple("Editing has started.", false);
+        }
+        public void FinishEditing(object syncfield)
         {
             DialogSimple("Editing is finished.", false);
         }
 
         public void GenerationMessage(ulong generation, object target = null)
         {
-            Console.WriteLine($"Generation #{generation}");
+            DialogSimple($"Generation #{generation}", false);
         }
 
-        public void FieldMessage(string message, object target = null)
+        public void FieldMessage(string message)
         {
-            Console.WriteLine(message);
+            DialogSimple(message, false);
         }
     }
 }
