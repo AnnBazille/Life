@@ -12,18 +12,26 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10" Padding="5" Background="White" BorderBrush="Black">Add Field</Button>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10">
+            <Button Name="btnAddField233" Margin="10" Padding="5" Background="White" BorderBrush="Black" Click="btnAddField233_Click">Add Field (3 cells around to start, 2-3 to survive)</Button>
+            <Button Name="btnAddField344" Margin="10" Padding="5" Background="White" BorderBrush="Black" Click="btnAddField344_Click">Add Field (4 cells around to start, 3-4 to survive)</Button>
+            <Button Name="btnAddField234" Margin="10" Padding="5" Background="White" BorderBrush="Black" Click="btnAddField234_Click">Add Field (3 cells around to start, 2-4 to survive)</Button>
+        </StackPanel>
         <Label Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center">Generation #</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="10" MinWidth="100" VerticalAlignment="Center"></TextBox>
-        <Button Grid.Row="1" Grid.Column="2" Margin="10" Padding="5" Background="White" BorderBrush="Black">Set this value as maximum</Button>
+        <TextBox Name="tbGeneration" Grid.Row="1" Grid.Column="1" Margin="10" MinWidth="100" VerticalAlignment="Center"></TextBox>
+        <Button Name="btnGeneration" Grid.Row="1" Grid.Column="2" Margin="10" Padding="5" Background="White" BorderBrush="Black" Click="btnGeneration_Click">Set this value as maximum</Button>
         <Label Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center">Sleep time (ms):</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="10" MinWidth="100" VerticalAlignment="Center"></TextBox>
-        <Button Grid.Row="2" Grid.Column="2" Margin="10" Padding="5" Background="White" BorderBrush="Black">Save</Button>
+        <TextBox Name="tbSleepTime" Grid.Row="2" Grid.Column="1" Margin="10" MinWidth="100" VerticalAlignment="Center"></TextBox>
+        <Button Name="btnSleepTime" Grid.Row="2" Grid.Column="2" Margin="10" Padding="5" Background="White" BorderBrush="Black" Click="btnSleepTime_Click">Save</Button>
+        <Button Name="btnPause" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="10" Padding="5" Background="White" BorderBrush="Black" Click="btnPause_Click">Pause</Button>
+        <Button Name="btnRun" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="10" Padding="5" Background="White" BorderBrush="Black" Click="btnRun_Click">Run</Button>
     </Grid>
 </Window>

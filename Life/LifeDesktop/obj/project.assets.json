@@ -1,0 +1,125 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0-windows7.0": {
+      "LifeLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/LifeLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LifeLibrary.dll": {}
+        }
+      },
+      "WPFPrinterLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "LifeLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WPFPrinterLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WPFPrinterLibrary.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "LifeLibrary/1.0.0": {
+      "type": "project",
+      "path": "../LifeLibrary/LifeLibrary.csproj",
+      "msbuildProject": "../LifeLibrary/LifeLibrary.csproj"
+    },
+    "WPFPrinterLibrary/1.0.0": {
+      "type": "project",
+      "path": "../WPFPrinterLibrary/WPFPrinterLibrary.csproj",
+      "msbuildProject": "../WPFPrinterLibrary/WPFPrinterLibrary.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0-windows7.0": [
+      "LifeLibrary >= 1.0.0",
+      "WPFPrinterLibrary >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\drann\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "H:\\SoftServe\\projects\\Life\\Life\\LifeDesktop\\LifeDesktop.csproj",
+      "projectName": "LifeDesktop",
+      "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeDesktop\\LifeDesktop.csproj",
+      "packagesPath": "C:\\Users\\drann\\.nuget\\packages\\",
+      "outputPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeDesktop\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\drann\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0-windows7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "projectReferences": {
+            "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj": {
+              "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\LifeLibrary\\LifeLibrary.csproj"
+            },
+            "H:\\SoftServe\\projects\\Life\\Life\\WPFPrinterLibrary\\WPFPrinterLibrary.csproj": {
+              "projectPath": "H:\\SoftServe\\projects\\Life\\Life\\WPFPrinterLibrary\\WPFPrinterLibrary.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

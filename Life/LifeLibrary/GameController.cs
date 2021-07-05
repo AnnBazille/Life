@@ -10,7 +10,6 @@ namespace LifeLibrary
         public IPrinter Printer = new P();
         private Cell<P> Instance;
         private FieldController<P> fieldController;
-        private uint _fieldno;
         public bool IsEnd = false;
         public GameController(Cell<P> instance)
         {
@@ -25,8 +24,8 @@ namespace LifeLibrary
                 StartProcess();
             }
             else
-            { 
-                Printer.DialogSimple($"End of evolution.", false);
+            {
+                Printer.FieldMessage($"End of evolution.");
                 IsEnd = true;
             }
         }
@@ -70,7 +69,7 @@ namespace LifeLibrary
         }
         public void EditField(uint number)
         {
-            _fieldno = number;
+            Printer.FieldMessage($"Field #{number}...");
             string answer;
             bool isOk;
             do
@@ -95,7 +94,7 @@ namespace LifeLibrary
             } while (!isOk);
             fieldController.SizeY = int.Parse(answer);
             Printer.Height = fieldController.SizeY;
-            fieldController.ResizeField(/*StartProcess*/);
+            fieldController.ResizeField();
             StartProcess += () => fieldController.SaveField();
             int option;
             do

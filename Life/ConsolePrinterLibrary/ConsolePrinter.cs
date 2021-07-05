@@ -65,7 +65,7 @@ namespace ConsolePrinterLibrary
         {
             Console.Clear();
         }
-        public void Print(bool[][] cells)
+        public void Print(bool[][] cells, object target = null)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             for(int i = 0; i < cells.Length; i++)
@@ -104,17 +104,17 @@ namespace ConsolePrinterLibrary
             return result;
         }
 
-        public void FinishEditing()
+        public void FinishEditing(object target = null)
         {
             DialogSimple("Editing is finished.", false);
         }
 
-        public void GenerationMessage(ulong generation)
+        public void GenerationMessage(ulong generation, object target = null)
         {
             Console.WriteLine($"Generation #{generation}");
         }
 
-        public void FieldMessage(string message)
+        public void FieldMessage(string message, object target = null)
         {
             Console.WriteLine(message);
         }

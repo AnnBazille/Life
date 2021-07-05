@@ -5,7 +5,7 @@ namespace LifeLibrary
 {
     public class TimeController<T> where T : class, IPrinter, new()
     {
-        public ulong Generation { get; private set; } = 1;
+        public ulong Generation { get; set; } = 1;
         public ushort SleepMilliseconds { get; set; } = 1000;
         public bool IsPaused = false;
         public T Printer = new T();
@@ -45,7 +45,8 @@ namespace LifeLibrary
                         isEnd &= GameControllers[i].IsEnd;
                     }
                     //Printer.DialogSimple($"Generation #{Generation}", false);
-                    Printer.GenerationMessage(Generation);
+                    //Printer.GenerationMessage(Generation);
+                    ShowGeneration();
                     Generation++;
                     Thread.Sleep(SleepMilliseconds);
                 }
@@ -54,6 +55,10 @@ namespace LifeLibrary
                     break;
                 }
             }
+        }
+        private void ShowGeneration()
+        {
+            Printer.GenerationMessage(Generation);
         }
     }
 }

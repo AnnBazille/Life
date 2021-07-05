@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "LifeConsole/1.0.0": {
+        "dependencies": {
+          "ConsolePrinterLibrary": "1.0.0",
+          "LifeLibrary": "1.0.0"
+        },
+        "runtime": {
+          "LifeConsole.dll": {}
+        }
+      },
+      "ConsolePrinterLibrary/1.0.0": {
+        "dependencies": {
+          "LifeLibrary": "1.0.0"
+        },
+        "runtime": {
+          "ConsolePrinterLibrary.dll": {}
+        }
+      },
+      "LifeLibrary/1.0.0": {
+        "runtime": {
+          "LifeLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LifeConsole/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ConsolePrinterLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LifeLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

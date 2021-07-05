@@ -7,11 +7,11 @@ namespace LifeLibrary
         public int Width { get; set; }
         public int Height { get; set; }
         public void Clear();
-        public void Print(bool[][] cells);
+        public void Print(bool[][] cells, object target = null);
         public string DialogSimple(string message, bool answer, object sync = null);
         public string DialogWithOptions(List<string> options);
-        public void FinishEditing();
-        public void GenerationMessage(ulong generation);
-        public void FieldMessage(string message);
+        public void FinishEditing(object target = null);
+        public void GenerationMessage(ulong generation, object target = null);
+        public void FieldMessage(string message, object target = null);
     }
 }

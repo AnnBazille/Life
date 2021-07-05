@@ -19,7 +19,7 @@ namespace WPFPrinterLibrary
     /// </summary>
     public partial class FieldWindow : Window
     {
-        private List<Button> _buttons = new List<Button>();
+        public List<Button> Buttons { get; set; } = new List<Button>();
         public FieldWindow(int width, int height)
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace WPFPrinterLibrary
                     button.Height = 20;
                     button.Click += btnOption_Click;
                     button.Tag = false;
-                    _buttons.Add(button);
+                    Buttons.Add(button);
                     GridField.Children.Add(button);
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, a);
@@ -60,9 +60,9 @@ namespace WPFPrinterLibrary
 
         public void LockCells()
         {
-            for(int i = 0; i < _buttons.Count; i++)
+            for(int i = 0; i < Buttons.Count; i++)
             {
-                _buttons[i].Click -= btnOption_Click;
+                Buttons[i].Click -= btnOption_Click;
             }
         }
     }

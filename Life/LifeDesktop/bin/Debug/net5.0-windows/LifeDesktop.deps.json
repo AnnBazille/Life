@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "LifeDesktop/1.0.0": {
+        "dependencies": {
+          "LifeLibrary": "1.0.0",
+          "WPFPrinterLibrary": "1.0.0"
+        },
+        "runtime": {
+          "LifeDesktop.dll": {}
+        }
+      },
+      "LifeLibrary/1.0.0": {
+        "runtime": {
+          "LifeLibrary.dll": {}
+        }
+      },
+      "WPFPrinterLibrary/1.0.0": {
+        "dependencies": {
+          "LifeLibrary": "1.0.0"
+        },
+        "runtime": {
+          "WPFPrinterLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LifeDesktop/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LifeLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WPFPrinterLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

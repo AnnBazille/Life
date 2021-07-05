@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:WPFPrinterLibrary"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight">
-    <Grid Name="GridField" Margin="10">
-    </Grid>
+    <StackPanel Margin="10">
+        <TextBlock Name="FieldMessage" Margin="10"></TextBlock>
+        <Grid Name="GridField" Margin="10">
+        </Grid>
+    </StackPanel>
 </Window>
