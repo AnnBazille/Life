@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace WPFPrinterLibrary
 {
@@ -81,6 +82,7 @@ namespace WPFPrinterLibrary
                     {
                         (Target as FieldWindow).Buttons[i * Width + a].Background = new SolidColorBrush(Colors.White);
                     }
+                    Thread.Sleep(500);
                 }
             }
         }
