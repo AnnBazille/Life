@@ -194,7 +194,6 @@ namespace LifeLibrary
                         //finish editing
                         if (option == 4)
                         {
-                            Printer.FinishEditing(fieldController);
                             break;
                         }
 
@@ -208,6 +207,7 @@ namespace LifeLibrary
                 fieldController.RandomFill();
                 Printer.Print(fieldController.FieldToArray());
             }
+            Printer.FinishEditing(fieldController);
             fieldController.SaveField();
         }
     }

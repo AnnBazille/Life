@@ -20,7 +20,14 @@ namespace WPFPrinterLibrary
     {
         public int Width { get; set ; }
         public int Height { get; set; }
-        public object Target { get; set; } = new FieldWindow();
+        public object Target { get; set; }
+        public bool Lock { get; set; } = true;
+        public string LastX{ get; set; }
+        public string LastY { get; set; }
+        public GUIPrinter()
+        {
+            Target = new FieldWindow(this);
+        }
         public void Clear() { }
         public void StartEditing()
         {
@@ -31,11 +38,27 @@ namespace WPFPrinterLibrary
         public string DialogSimple(string message, bool answer, object sync = null)
         {
             String result = string.Empty;
-            if(answer)
+            if (answer)
             {
                 InputWindow window = new InputWindow(message);
-                window.ShowDialog();
-                result = window.Answer;
+                if (sync == null)
+                { 
+                    window.ShowDialog();
+                    result = window.Answer;
+                }
+                else
+                {
+                    if(Lock)
+                    {
+                        while (Lock) { }
+                        result = LastX;
+                    }
+                    else
+                    {
+                        Lock = true;
+                        result = LastY;
+                    }
+                }
             }
             else
             {
@@ -59,6 +82,7 @@ namespace WPFPrinterLibrary
 
         public void FinishEditing(object syncfield)
         {
+            //collect data
             (Target as FieldWindow).LockCells();
         }
 
@@ -82,7 +106,6 @@ namespace WPFPrinterLibrary
                     {
                         (Target as FieldWindow).Buttons[i * Width + a].Background = new SolidColorBrush(Colors.White);
                     }
-                    Thread.Sleep(500);
                 }
             }
         }

@@ -11,18 +11,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LifeLibrary;
 
 namespace WPFPrinterLibrary
 {
+    public class TagStatus
+    {
+        public bool IsActivated { get; set; }
+        public int Y { get; set; }
+        public int X { get; set; }
+    }
     /// <summary>
     /// Interaction logic for FieldWindow.xaml
     /// </summary>
     public partial class FieldWindow : Window
     {
         public List<Button> Buttons { get; set; } = new List<Button>();
-        public FieldWindow()
+        private GUIPrinter Printer;
+        public FieldWindow(GUIPrinter printer)
         {
             InitializeComponent();
+            Printer = printer;
         }
 
         public void SetSize(int width, int height)
@@ -39,7 +48,12 @@ namespace WPFPrinterLibrary
                     button.Width = 20;
                     button.Height = 20;
                     button.Click += btnOption_Click;
-                    button.Tag = false;
+                    button.Tag = new TagStatus()
+                    {
+                        IsActivated = false,
+                        Y = i,
+                        X = a
+                    };
                     Buttons.Add(button);
                     GridField.Children.Add(button);
                     Grid.SetRow(button, i);
@@ -50,16 +64,20 @@ namespace WPFPrinterLibrary
 
         private void btnOption_Click(object sender, RoutedEventArgs e)
         {
-            if((bool)(sender as Button).Tag)
+            var tag = (sender as Button).Tag as TagStatus;
+            if (tag.IsActivated)
             {
-                (sender as Button).Tag = false;
+                tag.IsActivated = false;
                 (sender as Button).Background = new SolidColorBrush(Colors.White);
             }
             else
             {
-                (sender as Button).Tag = true;
+                tag.IsActivated = true;
                 (sender as Button).Background = new SolidColorBrush(Colors.Red);
             }
+            Printer.LastX = tag.X.ToString();
+            Printer.LastY = tag.Y.ToString();
+            Printer.Lock = false;
         }
 
         public void LockCells()

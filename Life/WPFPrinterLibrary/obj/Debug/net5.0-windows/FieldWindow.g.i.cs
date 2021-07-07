@@ -69,7 +69,7 @@ namespace WPFPrinterLibrary {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WPFPrinterLibrary;V1.0.0.0;component/fieldwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WPFPrinterLibrary;component/fieldwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\FieldWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

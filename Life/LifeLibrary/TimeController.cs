@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LifeLibrary
 {
@@ -31,10 +32,9 @@ namespace LifeLibrary
                 GameControllers[i].EditField((uint)i + 1);
             }
         }
-        private void Process(/*object _status*/)
+        private async void Process()
         {
             bool isEnd;
-            //var status = _status as ThreadStatusArguments;
             while (MaxGeneration == 0 || Generation <= MaxGeneration)
             {
                 isEnd = true;
@@ -48,8 +48,8 @@ namespace LifeLibrary
                     }
                     ShowGeneration();
                     Generation++;
-                    Thread.Sleep(SleepMilliseconds);
-                    ;
+                    //Thread.Sleep(SleepMilliseconds);
+                    await Task.Delay(SleepMilliseconds);
                 }
                 if(isEnd)
                 {
