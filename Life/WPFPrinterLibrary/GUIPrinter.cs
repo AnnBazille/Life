@@ -50,7 +50,8 @@ namespace WPFPrinterLibrary
                 {
                     if(Lock)
                     {
-                        while (Lock) { }
+                        (Target as FieldWindow).Activate();
+                        while(Lock) { }
                         result = LastX;
                     }
                     else
@@ -82,8 +83,20 @@ namespace WPFPrinterLibrary
 
         public void FinishEditing(object syncfield)
         {
+            var field = syncfield as FieldController<GUIPrinter>;
             //collect data
-            (Target as FieldWindow).LockCells();
+            var window = Target as FieldWindow;
+            for(int i = 0; i < Height; i++)
+            {
+                for(int a = 0; a < Width; a++)
+                {
+                    if((window.Buttons[i * Height + a].Tag as TagStatus).IsActivated)
+                    {
+                        field.SetCell(a, i);
+                    }
+                }
+            }
+            window.LockCells();
         }
 
         public void GenerationMessage(ulong generation, object target = null)

@@ -48,7 +48,6 @@ namespace LifeLibrary
                     }
                     ShowGeneration();
                     Generation++;
-                    //Thread.Sleep(SleepMilliseconds);
                     await Task.Delay(SleepMilliseconds);
                 }
                 if(isEnd)
