@@ -51,6 +51,7 @@ namespace WPFPrinterLibrary
                     if(Lock)
                     {
                         (Target as FieldWindow).Activate();
+                        //do something here
                         while(Lock) { }
                         result = LastX;
                     }
